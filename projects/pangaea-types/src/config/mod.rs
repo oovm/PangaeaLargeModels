@@ -1,7 +1,7 @@
-use schemars::{JsonSchema, schema_for};
+use schemars::JsonSchema;
 
 #[derive(JsonSchema)]
-pub struct DeusMatrixConfig {
+pub struct PangaeaMatrixConfig {
     pub civit_key: i32,
     pub my_bool: bool,
     pub my_nullable_enum: Option<DatabaseConfig>,
@@ -14,10 +14,3 @@ pub enum DatabaseConfig {
 }
 
 
-
-
-#[test]
-fn test() {
-    let schema = schema_for!(DeusMatrixConfig);
-    println!("{}", serde_json::to_string_pretty(&schema).unwrap());
-}

@@ -16,6 +16,7 @@ exclude = ["package.json", "tests/**"]
 [dependencies]
 schemars = "1.0.0-alpha.2"
 serde_json = "1.0.117"
+serde = { version = "1.0.203", features = ["derive"] }
 
 [dev-dependencies]
 

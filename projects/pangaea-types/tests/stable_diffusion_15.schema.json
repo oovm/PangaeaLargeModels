@@ -1,0 +1,240 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "PangaeaTaskType",
+    "oneOf": [
+        {
+            "description": "A struct that holds the prompts for the image generation.",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "const": "Stable Diffusion 1.4"
+                },
+                "clip_stop_at_last_layers": {
+                    "type": "integer",
+                    "format": "uint",
+                    "minimum": 0
+                },
+                "extension": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/DiffuserExtension"
+                    }
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "uint64",
+                    "minimum": 0
+                },
+                "negative_prompt": {
+                    "type": "string"
+                },
+                "positive_prompt": {
+                    "type": "string"
+                },
+                "seed": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "required": [
+                "type",
+                "id",
+                "positive_prompt",
+                "negative_prompt",
+                "seed",
+                "clip_stop_at_last_layers",
+                "extension"
+            ]
+        },
+        {
+            "description": "A struct that holds the prompts for the image generation.",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "const": "Stable Diffusion 1.5"
+                },
+                "clip_stop_at_last_layers": {
+                    "type": "integer",
+                    "format": "uint",
+                    "minimum": 0
+                },
+                "extension": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/DiffuserExtension"
+                    }
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "uint64",
+                    "minimum": 0
+                },
+                "negative_prompt": {
+                    "type": "string"
+                },
+                "positive_prompt": {
+                    "type": "string"
+                },
+                "seed": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "required": [
+                "type",
+                "id",
+                "positive_prompt",
+                "negative_prompt",
+                "seed",
+                "clip_stop_at_last_layers",
+                "extension"
+            ]
+        },
+        {
+            "description": "A struct that holds the prompts for the image generation.",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "const": "Stable Diffusion 2.0"
+                },
+                "clip_stop_at_last_layers": {
+                    "type": "integer",
+                    "format": "uint",
+                    "minimum": 0
+                },
+                "extension": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/DiffuserExtension"
+                    }
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "uint64",
+                    "minimum": 0
+                },
+                "negative_prompt": {
+                    "type": "string"
+                },
+                "positive_prompt": {
+                    "type": "string"
+                },
+                "seed": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "required": [
+                "type",
+                "id",
+                "positive_prompt",
+                "negative_prompt",
+                "seed",
+                "clip_stop_at_last_layers",
+                "extension"
+            ]
+        },
+        {
+            "description": "A struct that holds the prompts for the image generation.",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "const": "Stable Diffusion 2.1"
+                },
+                "clip_stop_at_last_layers": {
+                    "type": "integer",
+                    "format": "uint",
+                    "minimum": 0
+                },
+                "extension": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/DiffuserExtension"
+                    }
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "uint64",
+                    "minimum": 0
+                },
+                "negative_prompt": {
+                    "type": "string"
+                },
+                "positive_prompt": {
+                    "type": "string"
+                },
+                "seed": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "required": [
+                "type",
+                "id",
+                "positive_prompt",
+                "negative_prompt",
+                "seed",
+                "clip_stop_at_last_layers",
+                "extension"
+            ]
+        },
+        {
+            "description": "A struct that holds the prompts for the image generation.",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "const": "Stable Diffusion 3.0"
+                },
+                "clip_stop_at_last_layers": {
+                    "type": "integer",
+                    "format": "uint",
+                    "minimum": 0
+                },
+                "extension": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/DiffuserExtension"
+                    }
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "uint64",
+                    "minimum": 0
+                },
+                "negative_prompt": {
+                    "type": "string"
+                },
+                "positive_prompt": {
+                    "type": "string"
+                },
+                "seed": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "required": [
+                "type",
+                "id",
+                "positive_prompt",
+                "negative_prompt",
+                "seed",
+                "clip_stop_at_last_layers",
+                "extension"
+            ]
+        }
+    ],
+    "$defs": {
+        "DiffuserExtension": {
+            "type": "string",
+            "enum": [
+                "Lora",
+                "Dora"
+            ]
+        }
+    }
+}
