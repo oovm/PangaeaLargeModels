@@ -8,11 +8,12 @@
             "properties": {
                 "type": {
                     "type": "string",
-                    "const": "Stable Diffusion 1.4"
+                    "const": "Stable Diffusion v1.4"
                 },
                 "clip_stop_at_last_layers": {
                     "type": "integer",
                     "format": "uint",
+                    "default": 2,
                     "minimum": 0
                 },
                 "extension": {
@@ -21,29 +22,34 @@
                         "$ref": "#/$defs/DiffuserExtension"
                     }
                 },
-                "id": {
+                "negative_prompt": {
+                    "type": "string",
+                    "default": ""
+                },
+                "positive_prompt": {
+                    "type": "string",
+                    "default": ""
+                },
+                "seed": {
+                    "type": "integer",
+                    "format": "int64",
+                    "default": 0
+                },
+                "task_id": {
                     "type": "integer",
                     "format": "uint64",
                     "minimum": 0
                 },
-                "negative_prompt": {
-                    "type": "string"
-                },
-                "positive_prompt": {
-                    "type": "string"
-                },
-                "seed": {
+                "user_id": {
                     "type": "integer",
-                    "format": "int64"
+                    "format": "uint64",
+                    "minimum": 0
                 }
             },
             "required": [
                 "type",
-                "id",
-                "positive_prompt",
-                "negative_prompt",
-                "seed",
-                "clip_stop_at_last_layers",
+                "task_id",
+                "user_id",
                 "extension"
             ]
         },
@@ -53,11 +59,12 @@
             "properties": {
                 "type": {
                     "type": "string",
-                    "const": "Stable Diffusion 1.5"
+                    "const": "Stable Diffusion v1.5"
                 },
                 "clip_stop_at_last_layers": {
                     "type": "integer",
                     "format": "uint",
+                    "default": 2,
                     "minimum": 0
                 },
                 "extension": {
@@ -66,29 +73,34 @@
                         "$ref": "#/$defs/DiffuserExtension"
                     }
                 },
-                "id": {
+                "negative_prompt": {
+                    "type": "string",
+                    "default": ""
+                },
+                "positive_prompt": {
+                    "type": "string",
+                    "default": ""
+                },
+                "seed": {
+                    "type": "integer",
+                    "format": "int64",
+                    "default": 0
+                },
+                "task_id": {
                     "type": "integer",
                     "format": "uint64",
                     "minimum": 0
                 },
-                "negative_prompt": {
-                    "type": "string"
-                },
-                "positive_prompt": {
-                    "type": "string"
-                },
-                "seed": {
+                "user_id": {
                     "type": "integer",
-                    "format": "int64"
+                    "format": "uint64",
+                    "minimum": 0
                 }
             },
             "required": [
                 "type",
-                "id",
-                "positive_prompt",
-                "negative_prompt",
-                "seed",
-                "clip_stop_at_last_layers",
+                "task_id",
+                "user_id",
                 "extension"
             ]
         },
@@ -98,11 +110,12 @@
             "properties": {
                 "type": {
                     "type": "string",
-                    "const": "Stable Diffusion 2.0"
+                    "const": "Stable Diffusion v2.0"
                 },
                 "clip_stop_at_last_layers": {
                     "type": "integer",
                     "format": "uint",
+                    "default": 2,
                     "minimum": 0
                 },
                 "extension": {
@@ -111,29 +124,34 @@
                         "$ref": "#/$defs/DiffuserExtension"
                     }
                 },
-                "id": {
+                "negative_prompt": {
+                    "type": "string",
+                    "default": ""
+                },
+                "positive_prompt": {
+                    "type": "string",
+                    "default": ""
+                },
+                "seed": {
+                    "type": "integer",
+                    "format": "int64",
+                    "default": 0
+                },
+                "task_id": {
                     "type": "integer",
                     "format": "uint64",
                     "minimum": 0
                 },
-                "negative_prompt": {
-                    "type": "string"
-                },
-                "positive_prompt": {
-                    "type": "string"
-                },
-                "seed": {
+                "user_id": {
                     "type": "integer",
-                    "format": "int64"
+                    "format": "uint64",
+                    "minimum": 0
                 }
             },
             "required": [
                 "type",
-                "id",
-                "positive_prompt",
-                "negative_prompt",
-                "seed",
-                "clip_stop_at_last_layers",
+                "task_id",
+                "user_id",
                 "extension"
             ]
         },
@@ -143,11 +161,12 @@
             "properties": {
                 "type": {
                     "type": "string",
-                    "const": "Stable Diffusion 2.1"
+                    "const": "Stable Diffusion v2.1"
                 },
                 "clip_stop_at_last_layers": {
                     "type": "integer",
                     "format": "uint",
+                    "default": 2,
                     "minimum": 0
                 },
                 "extension": {
@@ -156,30 +175,137 @@
                         "$ref": "#/$defs/DiffuserExtension"
                     }
                 },
-                "id": {
+                "negative_prompt": {
+                    "type": "string",
+                    "default": ""
+                },
+                "positive_prompt": {
+                    "type": "string",
+                    "default": ""
+                },
+                "seed": {
+                    "type": "integer",
+                    "format": "int64",
+                    "default": 0
+                },
+                "task_id": {
                     "type": "integer",
                     "format": "uint64",
                     "minimum": 0
                 },
-                "negative_prompt": {
-                    "type": "string"
-                },
-                "positive_prompt": {
-                    "type": "string"
-                },
-                "seed": {
+                "user_id": {
                     "type": "integer",
-                    "format": "int64"
+                    "format": "uint64",
+                    "minimum": 0
                 }
             },
             "required": [
                 "type",
-                "id",
-                "positive_prompt",
-                "negative_prompt",
-                "seed",
-                "clip_stop_at_last_layers",
+                "task_id",
+                "user_id",
                 "extension"
+            ]
+        },
+        {
+            "description": "A struct that holds the prompts for the image generation.",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "const": "Stable Diffusion XL v1.0"
+                },
+                "clip_stop_at_last_layers": {
+                    "type": "integer",
+                    "format": "uint",
+                    "default": 2,
+                    "minimum": 0
+                },
+                "extensions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/DiffuserExtension"
+                    }
+                },
+                "negative_prompt": {
+                    "type": "string",
+                    "default": ""
+                },
+                "positive_prompt": {
+                    "type": "string",
+                    "default": ""
+                },
+                "seed": {
+                    "type": "integer",
+                    "format": "int64",
+                    "default": 0
+                },
+                "task_id": {
+                    "type": "integer",
+                    "format": "uint64",
+                    "minimum": 0
+                },
+                "user_id": {
+                    "type": "integer",
+                    "format": "uint64",
+                    "minimum": 0
+                }
+            },
+            "required": [
+                "type",
+                "task_id",
+                "user_id",
+                "extensions"
+            ]
+        },
+        {
+            "description": "A struct that holds the prompts for the image generation.",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "const": "Stable Diffusion XL PonyV6"
+                },
+                "clip_stop_at_last_layers": {
+                    "type": "integer",
+                    "format": "uint",
+                    "default": 2,
+                    "minimum": 0
+                },
+                "extensions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/DiffuserExtension"
+                    }
+                },
+                "negative_prompt": {
+                    "type": "string",
+                    "default": ""
+                },
+                "positive_prompt": {
+                    "type": "string",
+                    "default": ""
+                },
+                "seed": {
+                    "type": "integer",
+                    "format": "int64",
+                    "default": 0
+                },
+                "task_id": {
+                    "type": "integer",
+                    "format": "uint64",
+                    "minimum": 0
+                },
+                "user_id": {
+                    "type": "integer",
+                    "format": "uint64",
+                    "minimum": 0
+                }
+            },
+            "required": [
+                "type",
+                "task_id",
+                "user_id",
+                "extensions"
             ]
         },
         {
@@ -193,48 +319,102 @@
                 "clip_stop_at_last_layers": {
                     "type": "integer",
                     "format": "uint",
+                    "default": 2,
                     "minimum": 0
                 },
-                "extension": {
+                "extensions": {
                     "type": "array",
                     "items": {
                         "$ref": "#/$defs/DiffuserExtension"
                     }
                 },
-                "id": {
+                "negative_prompt": {
+                    "type": "string",
+                    "default": ""
+                },
+                "positive_prompt": {
+                    "type": "string",
+                    "default": ""
+                },
+                "seed": {
+                    "type": "integer",
+                    "format": "int64",
+                    "default": 0
+                },
+                "task_id": {
                     "type": "integer",
                     "format": "uint64",
                     "minimum": 0
                 },
-                "negative_prompt": {
-                    "type": "string"
-                },
-                "positive_prompt": {
-                    "type": "string"
-                },
-                "seed": {
+                "user_id": {
                     "type": "integer",
-                    "format": "int64"
+                    "format": "uint64",
+                    "minimum": 0
                 }
             },
             "required": [
                 "type",
-                "id",
-                "positive_prompt",
-                "negative_prompt",
-                "seed",
-                "clip_stop_at_last_layers",
-                "extension"
+                "task_id",
+                "user_id",
+                "extensions"
             ]
         }
     ],
     "$defs": {
         "DiffuserExtension": {
-            "type": "string",
-            "enum": [
-                "Lora",
-                "Dora"
+            "oneOf": [
+                {
+                    "type": "string",
+                    "enum": [
+                        "Dora"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "Lora": {
+                            "$ref": "#/$defs/StableDiffusionLora"
+                        }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                        "Lora"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "HighResolutionFix": {
+                            "$ref": "#/$defs/HighResolutionFixer"
+                        }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                        "HighResolutionFix"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "TextEmbedding": {
+                            "$ref": "#/$defs/TextEmbedding"
+                        }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                        "TextEmbedding"
+                    ]
+                }
             ]
+        },
+        "HighResolutionFixer": {
+            "type": "object"
+        },
+        "StableDiffusionLora": {
+            "type": "object"
+        },
+        "TextEmbedding": {
+            "type": "object"
         }
     }
 }

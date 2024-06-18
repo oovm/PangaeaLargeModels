@@ -1,9 +1,10 @@
 {
-    "type": "Stable Diffusion 1.5",
-    "id": 0,
+    "type": "Stable Diffusion v1.5",
+    "task_id": 0,
+    "user_id": 0,
     "positive_prompt": "",
     "negative_prompt": "",
     "seed": 0,
-    "clip_stop_at_last_layers": 1,
+    "clip_stop_at_last_layers": 2,
     "extension": []
 }

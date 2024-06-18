@@ -16,11 +16,12 @@ fn test_schema() {
     let here = Path::new(env!("CARGO_MANIFEST_DIR"));
     let data = PangaeaTaskType::SD15(StableDiffusion15Task {
         common: StableDiffusionCommon {
-            id: 0,
+            task_id: 0,
+            user_id: 0,
             positive_prompt: "".to_string(),
             negative_prompt: "".to_string(),
             seed: 0,
-            clip_stop_at_last_layers: 0,
+            clip_stop_at_last_layers: 2,
         },
         extension: vec![],
     });
