@@ -2,7 +2,7 @@
 resolver = "2"
 members = ["projects/*"]
 default-members = [
-    "projects/diffuser-matrix",
+    "projects/pangaea-types",
 ]
 exclude = [
     "projects/.DS_Store",

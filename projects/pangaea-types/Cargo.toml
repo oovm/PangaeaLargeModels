@@ -1,5 +1,5 @@
 [package]
-name = "diffuser-matrix"
+name = "pangaea-types"
 publish = false
 version = "0.0.0"
 authors = ["Aster <192607617@qq.com>"]
