@@ -22,6 +22,7 @@ fn test_schema() {
             negative_prompt: "".to_string(),
             seed: 0,
             clip_stop_at_last_layers: 2,
+            high_resolution: None,
         },
         extension: vec![],
     });

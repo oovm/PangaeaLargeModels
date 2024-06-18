@@ -22,6 +22,16 @@
                         "$ref": "#/$defs/DiffuserExtension"
                     }
                 },
+                "high_resolution": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/HighResolutionFixer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
                 "negative_prompt": {
                     "type": "string",
                     "default": ""
@@ -72,6 +82,16 @@
                     "items": {
                         "$ref": "#/$defs/DiffuserExtension"
                     }
+                },
+                "high_resolution": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/HighResolutionFixer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
                 },
                 "negative_prompt": {
                     "type": "string",
@@ -124,6 +144,16 @@
                         "$ref": "#/$defs/DiffuserExtension"
                     }
                 },
+                "high_resolution": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/HighResolutionFixer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
                 "negative_prompt": {
                     "type": "string",
                     "default": ""
@@ -174,6 +204,16 @@
                     "items": {
                         "$ref": "#/$defs/DiffuserExtension"
                     }
+                },
+                "high_resolution": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/HighResolutionFixer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
                 },
                 "negative_prompt": {
                     "type": "string",
@@ -226,6 +266,16 @@
                         "$ref": "#/$defs/DiffuserExtension"
                     }
                 },
+                "high_resolution": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/HighResolutionFixer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
                 "negative_prompt": {
                     "type": "string",
                     "default": ""
@@ -276,6 +326,16 @@
                     "items": {
                         "$ref": "#/$defs/DiffuserExtension"
                     }
+                },
+                "high_resolution": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/HighResolutionFixer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
                 },
                 "negative_prompt": {
                     "type": "string",
@@ -328,6 +388,16 @@
                         "$ref": "#/$defs/DiffuserExtension"
                     }
                 },
+                "high_resolution": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/HighResolutionFixer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
                 "negative_prompt": {
                     "type": "string",
                     "default": ""
@@ -364,56 +434,49 @@
         "DiffuserExtension": {
             "oneOf": [
                 {
-                    "type": "string",
-                    "enum": [
-                        "Dora"
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "const": "TextEmbedding"
+                        }
+                    },
+                    "required": [
+                        "type"
                     ]
                 },
                 {
                     "type": "object",
                     "properties": {
-                        "Lora": {
-                            "$ref": "#/$defs/StableDiffusionLora"
+                        "type": {
+                            "type": "string",
+                            "const": "Lora"
+                        },
+                        "strength": {
+                            "type": "number",
+                            "format": "float"
                         }
                     },
-                    "additionalProperties": false,
                     "required": [
-                        "Lora"
+                        "type",
+                        "strength"
                     ]
                 },
                 {
                     "type": "object",
                     "properties": {
-                        "HighResolutionFix": {
-                            "$ref": "#/$defs/HighResolutionFixer"
+                        "type": {
+                            "type": "string",
+                            "const": "Dora"
                         }
                     },
-                    "additionalProperties": false,
                     "required": [
-                        "HighResolutionFix"
-                    ]
-                },
-                {
-                    "type": "object",
-                    "properties": {
-                        "TextEmbedding": {
-                            "$ref": "#/$defs/TextEmbedding"
-                        }
-                    },
-                    "additionalProperties": false,
-                    "required": [
-                        "TextEmbedding"
+                        "type"
                     ]
                 }
             ]
         },
         "HighResolutionFixer": {
-            "type": "object"
-        },
-        "StableDiffusionLora": {
-            "type": "object"
-        },
-        "TextEmbedding": {
             "type": "object"
         }
     }
