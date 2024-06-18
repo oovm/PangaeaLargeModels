@@ -2,21 +2,32 @@ use super::*;
 
 #[derive(Clone, Debug, Serialize, Deserialize, JsonSchema)]
 pub struct StableDiffusionCommon {
+    /// The unique id of the task
     pub task_id: u64,
-    pub user_id: u64,
+    /// The token owner will pay the fee
+    pub api_token: u64,
+    /// The positive prompt
     #[serde(default)]
     pub positive_prompt: String,
+    /// The negative prompt
     #[serde(default)]
     pub negative_prompt: String,
+    pub steps: u8,
+    #[serde(default = "default_cfg_scale")]
+    #[schemars(range(min = 1, max = 10))]
+    pub cfg_scale: f32,
+    /// The random seed
     #[serde(default)]
     pub seed: i64,
-    #[serde(default = "clip_stop_default")]
-    pub clip_stop_at_last_layers: usize,
+    #[serde(default)]
     pub high_resolution: Option<HighResolutionFixer>,
 }
 
-fn clip_stop_default() -> usize {
+fn default_clip_skip() -> usize {
     return 2;
+}
+fn default_cfg_scale() -> f32 {
+    return 7.0;
 }
 
 /// A struct that holds the prompts for the image generation.
@@ -24,6 +35,9 @@ fn clip_stop_default() -> usize {
 pub struct StableDiffusion14Task {
     #[serde(flatten)]
     pub common: StableDiffusionCommon,
+    /// The CLIP will stop at the last layers
+    #[serde(default = "default_clip_skip")]
+    pub clip_skip: usize,
     pub extension: Vec<DiffuserExtension>,
 }
 
@@ -32,6 +46,9 @@ pub struct StableDiffusion14Task {
 pub struct StableDiffusion15Task {
     #[serde(flatten)]
     pub common: StableDiffusionCommon,
+    /// The CLIP will stop at the last layers
+    #[serde(default = "default_clip_skip")]
+    pub clip_skip: usize,
     pub extension: Vec<DiffuserExtension>,
 }
 
@@ -40,6 +57,9 @@ pub struct StableDiffusion15Task {
 pub struct StableDiffusion20Task {
     #[serde(flatten)]
     pub common: StableDiffusionCommon,
+    /// The CLIP will stop at the last layers
+    #[serde(default = "default_clip_skip")]
+    pub clip_skip: usize,
     pub extension: Vec<DiffuserExtension>,
 }
 
@@ -48,6 +68,9 @@ pub struct StableDiffusion20Task {
 pub struct StableDiffusion21Task {
     #[serde(flatten)]
     pub common: StableDiffusionCommon,
+    /// The CLIP will stop at the last layers
+    #[serde(default = "default_clip_skip")]
+    pub clip_skip: usize,
     pub extension: Vec<DiffuserExtension>,
 }
 
@@ -56,6 +79,9 @@ pub struct StableDiffusion21Task {
 pub struct StableDiffusion30Task {
     #[serde(flatten)]
     pub common: StableDiffusionCommon,
+    /// The CLIP will stop at the last layers
+    #[serde(default = "default_clip_skip")]
+    pub clip_skip: usize,
     pub extensions: Vec<DiffuserExtension>,
 }
 
@@ -65,19 +91,42 @@ pub struct StableDiffusion30Task {
 pub enum DiffuserExtension {
     // #[serde(rename = "Stable Diffusion v1.4")]
     TextEmbedding(TextEmbedding),
-    // #[serde(rename = "Stable Diffusion v1.4")]
+    #[serde(rename = "LoRA")]
     Lora(StableDiffusionLora),
     // #[serde(rename = "Stable Diffusion v1.4")]
     Dora,
 }
 
 #[derive(Copy, Clone, Debug, Serialize, Deserialize, JsonSchema)]
-pub struct TextEmbedding {}
+pub struct TextEmbedding {
+    pub model_id: u64,
+}
 
 #[derive(Copy, Clone, Debug, Serialize, Deserialize, JsonSchema)]
-pub struct HighResolutionFixer {}
+pub struct HighResolutionFixer {
+    #[serde(default = "default_scale")]
+    pub scale: f32,
+    #[serde(default)]
+    pub method: HighResolutionFixMethod,
+}
+
+#[derive(Copy, Clone, Debug, Default, Serialize, Deserialize, JsonSchema)]
+pub enum HighResolutionFixMethod {
+    #[default]
+    EsrGan,
+}
+
+fn default_scale() -> f32 {
+    2.0
+}
 
 #[derive(Copy, Clone, Debug, Serialize, Deserialize, JsonSchema)]
 pub struct StableDiffusionLora {
+    pub model_id: u64,
+    #[serde(default = "default_strength")]
     pub strength: f32,
+}
+
+fn default_strength() -> f32 {
+    0.8
 }

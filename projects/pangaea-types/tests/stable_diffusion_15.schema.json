@@ -10,7 +10,21 @@
                     "type": "string",
                     "const": "Stable Diffusion v1.4"
                 },
-                "clip_stop_at_last_layers": {
+                "api_token": {
+                    "description": "The token owner will pay the fee",
+                    "type": "integer",
+                    "format": "uint64",
+                    "minimum": 0
+                },
+                "cfg_scale": {
+                    "type": "number",
+                    "format": "float",
+                    "default": 7.0,
+                    "maximum": 10,
+                    "minimum": 1
+                },
+                "clip_skip": {
+                    "description": "The CLIP will stop at the last layers",
                     "type": "integer",
                     "format": "uint",
                     "default": 2,
@@ -30,27 +44,32 @@
                         {
                             "type": "null"
                         }
-                    ]
+                    ],
+                    "default": null
                 },
                 "negative_prompt": {
+                    "description": "The negative prompt",
                     "type": "string",
                     "default": ""
                 },
                 "positive_prompt": {
+                    "description": "The positive prompt",
                     "type": "string",
                     "default": ""
                 },
                 "seed": {
+                    "description": "The random seed",
                     "type": "integer",
                     "format": "int64",
                     "default": 0
                 },
-                "task_id": {
+                "steps": {
                     "type": "integer",
-                    "format": "uint64",
+                    "format": "uint8",
                     "minimum": 0
                 },
-                "user_id": {
+                "task_id": {
+                    "description": "The unique id of the task",
                     "type": "integer",
                     "format": "uint64",
                     "minimum": 0
@@ -59,7 +78,8 @@
             "required": [
                 "type",
                 "task_id",
-                "user_id",
+                "api_token",
+                "steps",
                 "extension"
             ]
         },
@@ -71,7 +91,21 @@
                     "type": "string",
                     "const": "Stable Diffusion v1.5"
                 },
-                "clip_stop_at_last_layers": {
+                "api_token": {
+                    "description": "The token owner will pay the fee",
+                    "type": "integer",
+                    "format": "uint64",
+                    "minimum": 0
+                },
+                "cfg_scale": {
+                    "type": "number",
+                    "format": "float",
+                    "default": 7.0,
+                    "maximum": 10,
+                    "minimum": 1
+                },
+                "clip_skip": {
+                    "description": "The CLIP will stop at the last layers",
                     "type": "integer",
                     "format": "uint",
                     "default": 2,
@@ -91,27 +125,32 @@
                         {
                             "type": "null"
                         }
-                    ]
+                    ],
+                    "default": null
                 },
                 "negative_prompt": {
+                    "description": "The negative prompt",
                     "type": "string",
                     "default": ""
                 },
                 "positive_prompt": {
+                    "description": "The positive prompt",
                     "type": "string",
                     "default": ""
                 },
                 "seed": {
+                    "description": "The random seed",
                     "type": "integer",
                     "format": "int64",
                     "default": 0
                 },
-                "task_id": {
+                "steps": {
                     "type": "integer",
-                    "format": "uint64",
+                    "format": "uint8",
                     "minimum": 0
                 },
-                "user_id": {
+                "task_id": {
+                    "description": "The unique id of the task",
                     "type": "integer",
                     "format": "uint64",
                     "minimum": 0
@@ -120,7 +159,8 @@
             "required": [
                 "type",
                 "task_id",
-                "user_id",
+                "api_token",
+                "steps",
                 "extension"
             ]
         },
@@ -132,7 +172,21 @@
                     "type": "string",
                     "const": "Stable Diffusion v2.0"
                 },
-                "clip_stop_at_last_layers": {
+                "api_token": {
+                    "description": "The token owner will pay the fee",
+                    "type": "integer",
+                    "format": "uint64",
+                    "minimum": 0
+                },
+                "cfg_scale": {
+                    "type": "number",
+                    "format": "float",
+                    "default": 7.0,
+                    "maximum": 10,
+                    "minimum": 1
+                },
+                "clip_skip": {
+                    "description": "The CLIP will stop at the last layers",
                     "type": "integer",
                     "format": "uint",
                     "default": 2,
@@ -152,27 +206,32 @@
                         {
                             "type": "null"
                         }
-                    ]
+                    ],
+                    "default": null
                 },
                 "negative_prompt": {
+                    "description": "The negative prompt",
                     "type": "string",
                     "default": ""
                 },
                 "positive_prompt": {
+                    "description": "The positive prompt",
                     "type": "string",
                     "default": ""
                 },
                 "seed": {
+                    "description": "The random seed",
                     "type": "integer",
                     "format": "int64",
                     "default": 0
                 },
-                "task_id": {
+                "steps": {
                     "type": "integer",
-                    "format": "uint64",
+                    "format": "uint8",
                     "minimum": 0
                 },
-                "user_id": {
+                "task_id": {
+                    "description": "The unique id of the task",
                     "type": "integer",
                     "format": "uint64",
                     "minimum": 0
@@ -181,7 +240,8 @@
             "required": [
                 "type",
                 "task_id",
-                "user_id",
+                "api_token",
+                "steps",
                 "extension"
             ]
         },
@@ -193,7 +253,21 @@
                     "type": "string",
                     "const": "Stable Diffusion v2.1"
                 },
-                "clip_stop_at_last_layers": {
+                "api_token": {
+                    "description": "The token owner will pay the fee",
+                    "type": "integer",
+                    "format": "uint64",
+                    "minimum": 0
+                },
+                "cfg_scale": {
+                    "type": "number",
+                    "format": "float",
+                    "default": 7.0,
+                    "maximum": 10,
+                    "minimum": 1
+                },
+                "clip_skip": {
+                    "description": "The CLIP will stop at the last layers",
                     "type": "integer",
                     "format": "uint",
                     "default": 2,
@@ -213,27 +287,32 @@
                         {
                             "type": "null"
                         }
-                    ]
+                    ],
+                    "default": null
                 },
                 "negative_prompt": {
+                    "description": "The negative prompt",
                     "type": "string",
                     "default": ""
                 },
                 "positive_prompt": {
+                    "description": "The positive prompt",
                     "type": "string",
                     "default": ""
                 },
                 "seed": {
+                    "description": "The random seed",
                     "type": "integer",
                     "format": "int64",
                     "default": 0
                 },
-                "task_id": {
+                "steps": {
                     "type": "integer",
-                    "format": "uint64",
+                    "format": "uint8",
                     "minimum": 0
                 },
-                "user_id": {
+                "task_id": {
+                    "description": "The unique id of the task",
                     "type": "integer",
                     "format": "uint64",
                     "minimum": 0
@@ -242,7 +321,8 @@
             "required": [
                 "type",
                 "task_id",
-                "user_id",
+                "api_token",
+                "steps",
                 "extension"
             ]
         },
@@ -254,7 +334,21 @@
                     "type": "string",
                     "const": "Stable Diffusion XL v1.0"
                 },
-                "clip_stop_at_last_layers": {
+                "api_token": {
+                    "description": "The token owner will pay the fee",
+                    "type": "integer",
+                    "format": "uint64",
+                    "minimum": 0
+                },
+                "cfg_scale": {
+                    "type": "number",
+                    "format": "float",
+                    "default": 7.0,
+                    "maximum": 10,
+                    "minimum": 1
+                },
+                "clip_skip": {
+                    "description": "The CLIP will stop at the last layers",
                     "type": "integer",
                     "format": "uint",
                     "default": 2,
@@ -274,27 +368,32 @@
                         {
                             "type": "null"
                         }
-                    ]
+                    ],
+                    "default": null
                 },
                 "negative_prompt": {
+                    "description": "The negative prompt",
                     "type": "string",
                     "default": ""
                 },
                 "positive_prompt": {
+                    "description": "The positive prompt",
                     "type": "string",
                     "default": ""
                 },
                 "seed": {
+                    "description": "The random seed",
                     "type": "integer",
                     "format": "int64",
                     "default": 0
                 },
-                "task_id": {
+                "steps": {
                     "type": "integer",
-                    "format": "uint64",
+                    "format": "uint8",
                     "minimum": 0
                 },
-                "user_id": {
+                "task_id": {
+                    "description": "The unique id of the task",
                     "type": "integer",
                     "format": "uint64",
                     "minimum": 0
@@ -303,7 +402,8 @@
             "required": [
                 "type",
                 "task_id",
-                "user_id",
+                "api_token",
+                "steps",
                 "extensions"
             ]
         },
@@ -315,7 +415,21 @@
                     "type": "string",
                     "const": "Stable Diffusion XL PonyV6"
                 },
-                "clip_stop_at_last_layers": {
+                "api_token": {
+                    "description": "The token owner will pay the fee",
+                    "type": "integer",
+                    "format": "uint64",
+                    "minimum": 0
+                },
+                "cfg_scale": {
+                    "type": "number",
+                    "format": "float",
+                    "default": 7.0,
+                    "maximum": 10,
+                    "minimum": 1
+                },
+                "clip_skip": {
+                    "description": "The CLIP will stop at the last layers",
                     "type": "integer",
                     "format": "uint",
                     "default": 2,
@@ -335,27 +449,32 @@
                         {
                             "type": "null"
                         }
-                    ]
+                    ],
+                    "default": null
                 },
                 "negative_prompt": {
+                    "description": "The negative prompt",
                     "type": "string",
                     "default": ""
                 },
                 "positive_prompt": {
+                    "description": "The positive prompt",
                     "type": "string",
                     "default": ""
                 },
                 "seed": {
+                    "description": "The random seed",
                     "type": "integer",
                     "format": "int64",
                     "default": 0
                 },
-                "task_id": {
+                "steps": {
                     "type": "integer",
-                    "format": "uint64",
+                    "format": "uint8",
                     "minimum": 0
                 },
-                "user_id": {
+                "task_id": {
+                    "description": "The unique id of the task",
                     "type": "integer",
                     "format": "uint64",
                     "minimum": 0
@@ -364,7 +483,8 @@
             "required": [
                 "type",
                 "task_id",
-                "user_id",
+                "api_token",
+                "steps",
                 "extensions"
             ]
         },
@@ -376,7 +496,21 @@
                     "type": "string",
                     "const": "Stable Diffusion 3.0"
                 },
-                "clip_stop_at_last_layers": {
+                "api_token": {
+                    "description": "The token owner will pay the fee",
+                    "type": "integer",
+                    "format": "uint64",
+                    "minimum": 0
+                },
+                "cfg_scale": {
+                    "type": "number",
+                    "format": "float",
+                    "default": 7.0,
+                    "maximum": 10,
+                    "minimum": 1
+                },
+                "clip_skip": {
+                    "description": "The CLIP will stop at the last layers",
                     "type": "integer",
                     "format": "uint",
                     "default": 2,
@@ -396,27 +530,32 @@
                         {
                             "type": "null"
                         }
-                    ]
+                    ],
+                    "default": null
                 },
                 "negative_prompt": {
+                    "description": "The negative prompt",
                     "type": "string",
                     "default": ""
                 },
                 "positive_prompt": {
+                    "description": "The positive prompt",
                     "type": "string",
                     "default": ""
                 },
                 "seed": {
+                    "description": "The random seed",
                     "type": "integer",
                     "format": "int64",
                     "default": 0
                 },
-                "task_id": {
+                "steps": {
                     "type": "integer",
-                    "format": "uint64",
+                    "format": "uint8",
                     "minimum": 0
                 },
-                "user_id": {
+                "task_id": {
+                    "description": "The unique id of the task",
                     "type": "integer",
                     "format": "uint64",
                     "minimum": 0
@@ -425,7 +564,8 @@
             "required": [
                 "type",
                 "task_id",
-                "user_id",
+                "api_token",
+                "steps",
                 "extensions"
             ]
         }
@@ -439,10 +579,16 @@
                         "type": {
                             "type": "string",
                             "const": "TextEmbedding"
+                        },
+                        "model_id": {
+                            "type": "integer",
+                            "format": "uint64",
+                            "minimum": 0
                         }
                     },
                     "required": [
-                        "type"
+                        "type",
+                        "model_id"
                     ]
                 },
                 {
@@ -450,16 +596,22 @@
                     "properties": {
                         "type": {
                             "type": "string",
-                            "const": "Lora"
+                            "const": "LoRA"
+                        },
+                        "model_id": {
+                            "type": "integer",
+                            "format": "uint64",
+                            "minimum": 0
                         },
                         "strength": {
                             "type": "number",
-                            "format": "float"
+                            "format": "float",
+                            "default": 0.800000011920929
                         }
                     },
                     "required": [
                         "type",
-                        "strength"
+                        "model_id"
                     ]
                 },
                 {
@@ -476,8 +628,25 @@
                 }
             ]
         },
+        "HighResolutionFixMethod": {
+            "type": "string",
+            "enum": [
+                "EsrGan"
+            ]
+        },
         "HighResolutionFixer": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+                "method": {
+                    "$ref": "#/$defs/HighResolutionFixMethod",
+                    "default": "EsrGan"
+                },
+                "scale": {
+                    "type": "number",
+                    "format": "float",
+                    "default": 2.0
+                }
+            }
         }
     }
 }

@@ -17,13 +17,15 @@ fn test_schema() {
     let data = PangaeaTaskType::SD15(StableDiffusion15Task {
         common: StableDiffusionCommon {
             task_id: 0,
-            user_id: 0,
+            api_token: 0,
             positive_prompt: "".to_string(),
             negative_prompt: "".to_string(),
+            steps: 20,
+            cfg_scale: 10.0,
             seed: 0,
-            clip_stop_at_last_layers: 2,
             high_resolution: None,
         },
+        clip_skip: 2,
         extension: vec![],
     });
     println!("{}", serde_json::to_string_pretty(&data).unwrap());
