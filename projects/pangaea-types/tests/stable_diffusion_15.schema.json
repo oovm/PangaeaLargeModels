@@ -17,6 +17,7 @@
                     "minimum": 0
                 },
                 "cfg_scale": {
+                    "description": "Classifier Free Guidance Scale is a parameter that controls how much the image generation process follows the text prompt. The higher the value, the more the image sticks to a given text input.",
                     "type": "number",
                     "format": "float",
                     "default": 7.0,
@@ -29,6 +30,11 @@
                     "format": "uint",
                     "default": 2,
                     "minimum": 0
+                },
+                "ensd": {
+                    "description": "eta noise seed delta",
+                    "type": "integer",
+                    "format": "int64"
                 },
                 "extension": {
                     "type": "array",
@@ -65,8 +71,9 @@
                 },
                 "steps": {
                     "type": "integer",
-                    "format": "uint8",
-                    "minimum": 0
+                    "format": "uint32",
+                    "maximum": 60,
+                    "minimum": 1
                 },
                 "task_id": {
                     "description": "The unique id of the task",
@@ -80,6 +87,7 @@
                 "task_id",
                 "api_token",
                 "steps",
+                "ensd",
                 "extension"
             ]
         },
@@ -98,6 +106,7 @@
                     "minimum": 0
                 },
                 "cfg_scale": {
+                    "description": "Classifier Free Guidance Scale is a parameter that controls how much the image generation process follows the text prompt. The higher the value, the more the image sticks to a given text input.",
                     "type": "number",
                     "format": "float",
                     "default": 7.0,
@@ -110,6 +119,11 @@
                     "format": "uint",
                     "default": 2,
                     "minimum": 0
+                },
+                "ensd": {
+                    "description": "eta noise seed delta",
+                    "type": "integer",
+                    "format": "int64"
                 },
                 "extension": {
                     "type": "array",
@@ -146,8 +160,9 @@
                 },
                 "steps": {
                     "type": "integer",
-                    "format": "uint8",
-                    "minimum": 0
+                    "format": "uint32",
+                    "maximum": 60,
+                    "minimum": 1
                 },
                 "task_id": {
                     "description": "The unique id of the task",
@@ -161,6 +176,7 @@
                 "task_id",
                 "api_token",
                 "steps",
+                "ensd",
                 "extension"
             ]
         },
@@ -179,6 +195,7 @@
                     "minimum": 0
                 },
                 "cfg_scale": {
+                    "description": "Classifier Free Guidance Scale is a parameter that controls how much the image generation process follows the text prompt. The higher the value, the more the image sticks to a given text input.",
                     "type": "number",
                     "format": "float",
                     "default": 7.0,
@@ -191,6 +208,11 @@
                     "format": "uint",
                     "default": 2,
                     "minimum": 0
+                },
+                "ensd": {
+                    "description": "eta noise seed delta",
+                    "type": "integer",
+                    "format": "int64"
                 },
                 "extension": {
                     "type": "array",
@@ -227,8 +249,9 @@
                 },
                 "steps": {
                     "type": "integer",
-                    "format": "uint8",
-                    "minimum": 0
+                    "format": "uint32",
+                    "maximum": 60,
+                    "minimum": 1
                 },
                 "task_id": {
                     "description": "The unique id of the task",
@@ -242,6 +265,7 @@
                 "task_id",
                 "api_token",
                 "steps",
+                "ensd",
                 "extension"
             ]
         },
@@ -260,6 +284,7 @@
                     "minimum": 0
                 },
                 "cfg_scale": {
+                    "description": "Classifier Free Guidance Scale is a parameter that controls how much the image generation process follows the text prompt. The higher the value, the more the image sticks to a given text input.",
                     "type": "number",
                     "format": "float",
                     "default": 7.0,
@@ -272,6 +297,11 @@
                     "format": "uint",
                     "default": 2,
                     "minimum": 0
+                },
+                "ensd": {
+                    "description": "eta noise seed delta",
+                    "type": "integer",
+                    "format": "int64"
                 },
                 "extension": {
                     "type": "array",
@@ -308,8 +338,9 @@
                 },
                 "steps": {
                     "type": "integer",
-                    "format": "uint8",
-                    "minimum": 0
+                    "format": "uint32",
+                    "maximum": 60,
+                    "minimum": 1
                 },
                 "task_id": {
                     "description": "The unique id of the task",
@@ -323,6 +354,7 @@
                 "task_id",
                 "api_token",
                 "steps",
+                "ensd",
                 "extension"
             ]
         },
@@ -341,6 +373,7 @@
                     "minimum": 0
                 },
                 "cfg_scale": {
+                    "description": "Classifier Free Guidance Scale is a parameter that controls how much the image generation process follows the text prompt. The higher the value, the more the image sticks to a given text input.",
                     "type": "number",
                     "format": "float",
                     "default": 7.0,
@@ -353,6 +386,11 @@
                     "format": "uint",
                     "default": 2,
                     "minimum": 0
+                },
+                "ensd": {
+                    "description": "eta noise seed delta",
+                    "type": "integer",
+                    "format": "int64"
                 },
                 "extensions": {
                     "type": "array",
@@ -389,8 +427,9 @@
                 },
                 "steps": {
                     "type": "integer",
-                    "format": "uint8",
-                    "minimum": 0
+                    "format": "uint32",
+                    "maximum": 60,
+                    "minimum": 1
                 },
                 "task_id": {
                     "description": "The unique id of the task",
@@ -404,6 +443,7 @@
                 "task_id",
                 "api_token",
                 "steps",
+                "ensd",
                 "extensions"
             ]
         },
@@ -422,6 +462,7 @@
                     "minimum": 0
                 },
                 "cfg_scale": {
+                    "description": "Classifier Free Guidance Scale is a parameter that controls how much the image generation process follows the text prompt. The higher the value, the more the image sticks to a given text input.",
                     "type": "number",
                     "format": "float",
                     "default": 7.0,
@@ -434,6 +475,11 @@
                     "format": "uint",
                     "default": 2,
                     "minimum": 0
+                },
+                "ensd": {
+                    "description": "eta noise seed delta",
+                    "type": "integer",
+                    "format": "int64"
                 },
                 "extensions": {
                     "type": "array",
@@ -470,8 +516,9 @@
                 },
                 "steps": {
                     "type": "integer",
-                    "format": "uint8",
-                    "minimum": 0
+                    "format": "uint32",
+                    "maximum": 60,
+                    "minimum": 1
                 },
                 "task_id": {
                     "description": "The unique id of the task",
@@ -485,6 +532,7 @@
                 "task_id",
                 "api_token",
                 "steps",
+                "ensd",
                 "extensions"
             ]
         },
@@ -503,6 +551,7 @@
                     "minimum": 0
                 },
                 "cfg_scale": {
+                    "description": "Classifier Free Guidance Scale is a parameter that controls how much the image generation process follows the text prompt. The higher the value, the more the image sticks to a given text input.",
                     "type": "number",
                     "format": "float",
                     "default": 7.0,
@@ -515,6 +564,11 @@
                     "format": "uint",
                     "default": 2,
                     "minimum": 0
+                },
+                "ensd": {
+                    "description": "eta noise seed delta",
+                    "type": "integer",
+                    "format": "int64"
                 },
                 "extensions": {
                     "type": "array",
@@ -551,8 +605,9 @@
                 },
                 "steps": {
                     "type": "integer",
-                    "format": "uint8",
-                    "minimum": 0
+                    "format": "uint32",
+                    "maximum": 60,
+                    "minimum": 1
                 },
                 "task_id": {
                     "description": "The unique id of the task",
@@ -566,6 +621,7 @@
                 "task_id",
                 "api_token",
                 "steps",
+                "ensd",
                 "extensions"
             ]
         }
@@ -631,7 +687,11 @@
         "HighResolutionFixMethod": {
             "type": "string",
             "enum": [
-                "EsrGan"
+                "Latent (1x)",
+                "Latent (2x nearest)",
+                "Latent (2x nearest exact)",
+                "Ultra Sharp (4x)",
+                "Anime Sharp (4x)"
             ]
         },
         "HighResolutionFixer": {
@@ -639,14 +699,32 @@
             "properties": {
                 "method": {
                     "$ref": "#/$defs/HighResolutionFixMethod",
-                    "default": "EsrGan"
+                    "default": "Latent (1x)"
+                },
+                "repaint_percent": {
+                    "type": "number",
+                    "format": "float",
+                    "maximum": 1,
+                    "minimum": 0
+                },
+                "repaint_steps": {
+                    "type": "integer",
+                    "format": "uint32",
+                    "maximum": 60,
+                    "minimum": 1
                 },
                 "scale": {
                     "type": "number",
                     "format": "float",
-                    "default": 2.0
+                    "maximum": 4,
+                    "minimum": 1
                 }
-            }
+            },
+            "required": [
+                "scale",
+                "repaint_percent",
+                "repaint_steps"
+            ]
         }
     }
 }

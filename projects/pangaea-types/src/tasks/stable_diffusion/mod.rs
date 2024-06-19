@@ -12,13 +12,18 @@ pub struct StableDiffusionCommon {
     /// The negative prompt
     #[serde(default)]
     pub negative_prompt: String,
+    ///
+    #[schemars(range(min = 1, max = 60))]
     pub steps: u8,
+    /// Classifier Free Guidance Scale is a parameter that controls how much the image generation process follows the text prompt. The higher the value, the more the image sticks to a given text input.
     #[serde(default = "default_cfg_scale")]
     #[schemars(range(min = 1, max = 10))]
     pub cfg_scale: f32,
     /// The random seed
     #[serde(default)]
     pub seed: i64,
+    /// eta noise seed delta
+    pub ensd: i64,
     #[serde(default)]
     pub high_resolution: Option<HighResolutionFixer>,
 }
@@ -26,6 +31,7 @@ pub struct StableDiffusionCommon {
 fn default_clip_skip() -> usize {
     return 2;
 }
+
 fn default_cfg_scale() -> f32 {
     return 7.0;
 }
@@ -104,20 +110,29 @@ pub struct TextEmbedding {
 
 #[derive(Copy, Clone, Debug, Serialize, Deserialize, JsonSchema)]
 pub struct HighResolutionFixer {
-    #[serde(default = "default_scale")]
+    #[schemars(range(min = 1, max = 4))]
     pub scale: f32,
     #[serde(default)]
     pub method: HighResolutionFixMethod,
+    #[schemars(range(min = 0, max = 1))]
+    pub repaint_percent: f32,
+    #[schemars(range(min = 1, max = 60))]
+    pub repaint_steps: u8,
 }
 
 #[derive(Copy, Clone, Debug, Default, Serialize, Deserialize, JsonSchema)]
 pub enum HighResolutionFixMethod {
     #[default]
-    EsrGan,
-}
-
-fn default_scale() -> f32 {
-    2.0
+    #[serde(rename = "Latent (1x)")]
+    Latent,
+    #[serde(rename = "Latent (2x nearest)")]
+    LatentNearest,
+    #[serde(rename = "Latent (2x nearest exact)")]
+    LatentNearestExact,
+    #[serde(rename = "Ultra Sharp (4x)")]
+    UltraSharp4x,
+    #[serde(rename = "Anime Sharp (4x)")]
+    AnimeSharp4x,
 }
 
 #[derive(Copy, Clone, Debug, Serialize, Deserialize, JsonSchema)]

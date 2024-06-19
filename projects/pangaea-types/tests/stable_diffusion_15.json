@@ -7,6 +7,7 @@
     "steps": 20,
     "cfg_scale": 10.0,
     "seed": 0,
+    "ensd": 0,
     "high_resolution": null,
     "clip_skip": 2,
     "extension": []
