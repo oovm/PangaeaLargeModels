@@ -1,10 +1,12 @@
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
-
 mod stable_diffusion;
 
-pub use self::stable_diffusion::{StableDiffusion14Task, StableDiffusion15Task, StableDiffusion20Task, StableDiffusion21Task, StableDiffusion30Task, StableDiffusionCommon};
+pub use self::stable_diffusion::{
+    StableDiffusion14Task, StableDiffusion15Task, StableDiffusion20Task, StableDiffusion21Task, StableDiffusion30Task,
+    StableDiffusionCommon,
+};
 
 #[derive(Clone, Debug, Serialize, Deserialize, JsonSchema)]
 #[serde(tag = "type")]

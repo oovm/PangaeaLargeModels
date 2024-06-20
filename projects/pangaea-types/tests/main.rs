@@ -1,21 +1,23 @@
-use std::path::Path;
-use mongodb::{Client, Collection};
-use schemars::{JsonSchema, schema_for};
+use mongodb::{
+    bson::{doc, oid::ObjectId},
+    options::{ClientOptions, IndexOptions, ServerApi, ServerApiVersion},
+    Client, Collection,
+};
+use pangaea_types::{
+    database::PangaeaClient,
+    tasks::{PangaeaTaskType, StableDiffusion15Task, StableDiffusionCommon},
+};
+use schemars::{schema_for, JsonSchema};
 use serde::{Deserialize, Serialize};
-use serde_json::ser::PrettyFormatter;
-use serde_json::Serializer;
-use pangaea_types::tasks::{PangaeaTaskType, StableDiffusion15Task, StableDiffusionCommon};
-use std::env::VarError;
-use mongodb::{bson::doc, options::{ClientOptions, ServerApi, ServerApiVersion}};
-use mongodb::bson::oid::ObjectId;
-use mongodb::options::IndexOptions;
-use pangaea_types::database::PangaeaClient;
+use serde_json::{ser::PrettyFormatter, Serializer};
+use std::{env::VarError, path::Path};
+use pangaea_types::database::users::UserEmailRegistrationRequest;
+
 
 #[test]
 fn ready() {
     println!("it works!")
 }
-
 
 #[test]
 fn test_schema() {
@@ -57,28 +59,25 @@ fn json_writer<T: Serialize + JsonSchema>(path: &Path, data: &T) {
     }
 }
 
-
-
-
 #[tokio::test]
 async fn main() -> mongodb::error::Result<()> {
     let mut client = match std::env::var("MONGODB_URI") {
-        Ok(url) => { PangaeaClient::new(&url).await? }
-        Err(e) => {
-            match e {
-                VarError::NotPresent => {
-                    panic!("Set environment variable `MONGODB_URI` to startup the database!")
-                }
-                VarError::NotUnicode(_) => {
-                    panic!("Environment variable `MONGODB_URI` is not a valid UTF-8 string")
-                }
+        Ok(url) => PangaeaClient::new(&url).await.unwrap(),
+        Err(e) => match e {
+            VarError::NotPresent => {
+                panic!("Set environment variable `MONGODB_URI` to startup the database!")
             }
-        }
+            VarError::NotUnicode(_) => {
+                panic!("Environment variable `MONGODB_URI` is not a valid UTF-8 string")
+            }
+        },
     };
-    client
-        .database("sample_mflix")
-        .run_command(doc! {"ping": 1}, None)
-        .await?;
-    println!("Pinged your deployment. You successfully connected to MongoDB!");
+    let a = UserEmailRegistrationRequest {
+        email: "996.icu".to_string(),
+        password: 100,
+        username: "996".to_string(),
+        nickname: "icu".to_string(),
+    };
+    a.execute(&client).await?;
     Ok(())
 }

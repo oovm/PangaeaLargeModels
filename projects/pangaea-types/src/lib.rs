@@ -4,10 +4,10 @@
 #![doc(html_logo_url = "https://raw.githubusercontent.com/oovm/shape-rs/dev/projects/images/Trapezohedron.svg")]
 #![doc(html_favicon_url = "https://raw.githubusercontent.com/oovm/shape-rs/dev/projects/images/Trapezohedron.svg")]
 
-mod errors;
-pub mod tasks;
-pub mod models;
-pub mod database;
 mod config;
+pub mod database;
+mod errors;
+pub mod models;
+pub mod tasks;
 
-pub use crate::errors::{ExampleErrorKind, Result, ExampleError};
+pub use crate::errors::{ExampleError, ExampleErrorKind, Result};

@@ -1,4 +1,3 @@
-
 use schemars::JsonSchema;
 
 #[derive(JsonSchema)]

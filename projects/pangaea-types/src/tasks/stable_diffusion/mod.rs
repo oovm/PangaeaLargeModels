@@ -91,7 +91,6 @@ pub struct StableDiffusion30Task {
     pub extensions: Vec<DiffuserExtension>,
 }
 
-
 #[derive(Copy, Clone, Debug, Serialize, Deserialize, JsonSchema)]
 #[serde(tag = "type")]
 pub enum DiffuserExtension {
