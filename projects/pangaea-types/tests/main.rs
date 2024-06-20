@@ -9,7 +9,7 @@ use std::env::VarError;
 use mongodb::{bson::doc, options::{ClientOptions, ServerApi, ServerApiVersion}};
 use mongodb::bson::oid::ObjectId;
 use mongodb::options::IndexOptions;
-use pangaea_types::database::PangaeaDatabase;
+use pangaea_types::database::PangaeaClient;
 
 #[test]
 fn ready() {
@@ -63,7 +63,7 @@ fn json_writer<T: Serialize + JsonSchema>(path: &Path, data: &T) {
 #[tokio::test]
 async fn main() -> mongodb::error::Result<()> {
     let mut client = match std::env::var("MONGODB_URI") {
-        Ok(url) => { PangaeaDatabase::new(&url).await? }
+        Ok(url) => { PangaeaClient::new(&url).await? }
         Err(e) => {
             match e {
                 VarError::NotPresent => {
