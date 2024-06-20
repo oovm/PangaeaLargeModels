@@ -7,6 +7,7 @@
 mod errors;
 pub mod tasks;
 pub mod models;
+pub mod database;
 mod config;
 
 pub use crate::errors::{ExampleErrorKind, Result, ExampleError};
