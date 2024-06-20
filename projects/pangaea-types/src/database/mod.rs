@@ -1,6 +1,6 @@
-use chrono::Utc;
+use crate::Result;
+use chrono::{DateTime, Utc};
 use mongodb::{
-    bson,
     bson::{doc, oid::ObjectId, Bson, Document, Timestamp},
     options::{ClientOptions, ServerApi, ServerApiVersion},
     results::{InsertOneResult, UpdateResult},
@@ -24,7 +24,7 @@ impl Debug for PangaeaClient {
 }
 
 impl PangaeaClient {
-    pub async fn new(uri: &str) -> Result<PangaeaClient, mongodb::error::Error> {
+    pub async fn new(uri: &str) -> Result<PangaeaClient> {
         let mut client_options = ClientOptions::parse(uri).await?;
         client_options.server_api = Some(ServerApi::builder().version(ServerApiVersion::V1).build());
         let client = Client::with_options(client_options)?;
@@ -33,19 +33,27 @@ impl PangaeaClient {
     pub async fn users_collection(&self) -> Collection<UserObject> {
         self.db_service.database("Authorization").collection("users")
     }
-    pub async fn email_collection(&self) -> Collection<UserEmailObject> {
+    pub async fn email_collection(&self) -> Collection<EmailObject> {
         self.db_service.database("Authorization").collection("email")
     }
+}
+
+pub fn expired_after_seconds(seconds: u32) -> Timestamp {
+    let now: DateTime<Utc> = Utc::now();
+    let seconds_since_epoch = now.timestamp() as u32;
+    Timestamp { time: seconds_since_epoch + seconds, increment: 0 }
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct UserObject {
     /// The user's ID
+    #[serde(rename = "_id")]
     id: ObjectId,
     /// The user's username
     username: String,
+    nickname: String,
     password: UserPasswordObject,
-    email: UserEmailObject,
+    email: ObjectId,
     /// Trigger risk control, forcing re-authentication when logging in
     login_verification_required: bool,
     banned_status: bool,
@@ -54,6 +62,7 @@ pub struct UserObject {
 #[derive(Copy, Clone, Debug, Serialize, Deserialize)]
 pub struct ApiKeyObject {
     /// The user's ID
+    #[serde(rename = "_id")]
     id: ObjectId,
     user: ObjectId,
     expired_at: Timestamp,
@@ -69,8 +78,9 @@ pub struct UserPasswordObject {
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
-pub struct UserEmailObject {
+pub struct EmailObject {
     /// The user's ID
+    #[serde(rename = "_id")]
     id: ObjectId,
     /// The user's email, must be lowercase
     email: String,
@@ -80,48 +90,4 @@ pub struct UserEmailObject {
     email_code: i64,
     /// The expiration time of the email code
     expired_at: Timestamp,
-}
-
-#[derive(Debug, Serialize, Deserialize, JsonSchema)]
-pub struct UserEmailVerificationRequest {
-    email: String,
-    code: i64,
-}
-
-impl UserEmailVerificationRequest {
-    pub async fn execute(&self, client: &PangaeaClient) -> Result<bool, mongodb::error::Error> {
-        let filter = {
-            let mut object = Document::new();
-            object.insert("email.id", &Bson::ObjectId(ObjectId::parse_str(&self.email).unwrap()));
-            object.insert("email.email_code", &Bson::Int64(self.code as i64));
-            object
-        };
-        let update = doc! {
-            "$set": {
-            "email.email_verified": true,
-        }
-        };
-        let collection = client.email_collection().await;
-        match collection.update_one(filter, update, None).await? {
-            UpdateResult { matched_count: 1, .. } => Ok(true),
-            _ => Ok(false),
-        }
-    }
-}
-
-#[derive(Debug, Serialize, Deserialize, JsonSchema)]
-pub struct UserEmailLoginRequest {
-    /// The user's email
-    email: String,
-    /// The hashed password generate at frontend
-    ///
-    /// if 0, run `User Email Verification`
-    #[serde(default)]
-    password: i64,
-}
-
-impl UserEmailLoginRequest {
-    pub async fn execute(&self, client: &PangaeaClient) -> Result<bool, mongodb::error::Error> {
-        todo!()
-    }
 }

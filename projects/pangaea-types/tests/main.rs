@@ -1,18 +1,12 @@
-use mongodb::{
-    bson::{doc, oid::ObjectId},
-    options::{ClientOptions, IndexOptions, ServerApi, ServerApiVersion},
-    Client, Collection,
-};
 use pangaea_types::{
-    database::PangaeaClient,
+    database::{users::UserEmailRegistrationRequest, PangaeaClient},
     tasks::{PangaeaTaskType, StableDiffusion15Task, StableDiffusionCommon},
+    Result,
 };
 use schemars::{schema_for, JsonSchema};
 use serde::{Deserialize, Serialize};
 use serde_json::{ser::PrettyFormatter, Serializer};
 use std::{env::VarError, path::Path};
-use pangaea_types::database::users::UserEmailRegistrationRequest;
-
 
 #[test]
 fn ready() {
@@ -60,7 +54,7 @@ fn json_writer<T: Serialize + JsonSchema>(path: &Path, data: &T) {
 }
 
 #[tokio::test]
-async fn main() -> mongodb::error::Result<()> {
+async fn main() -> Result<()> {
     let mut client = match std::env::var("MONGODB_URI") {
         Ok(url) => PangaeaClient::new(&url).await.unwrap(),
         Err(e) => match e {
@@ -72,12 +66,13 @@ async fn main() -> mongodb::error::Result<()> {
             }
         },
     };
-    let a = UserEmailRegistrationRequest {
-        email: "996.icu".to_string(),
+    UserEmailRegistrationRequest {
+        email: "aaa@996.icu".to_string(),
         password: 100,
         username: "996".to_string(),
         nickname: "icu".to_string(),
-    };
-    a.execute(&client).await?;
+    }
+    .execute(&client)
+    .await?;
     Ok(())
 }

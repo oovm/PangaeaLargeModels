@@ -10,4 +10,4 @@ mod errors;
 pub mod models;
 pub mod tasks;
 
-pub use crate::errors::{ExampleError, ExampleErrorKind, Result};
+pub use crate::errors::{PangaeaError, ExampleErrorKind, Result};
