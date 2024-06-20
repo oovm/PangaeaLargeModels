@@ -16,15 +16,15 @@ exclude = ["package.json", "tests/**"]
 rand = "0.9.0-alpha.1"
 lettre = "0.11.7"
 lettre_email = "0.9.4"
-mongodb = "2.8.2"
 schemars = { version = "1.0.0-alpha.2", features = [] }
 serde_json = "1.0.117"
 serde = { version = "1.0.203", features = ["derive"] }
 chrono = "0.4.38"
-tokio-postgres = "0.7.10"
+tokio = { version = "1.38.0", features = ["full"] }
+mongodb = "2.8.2"
 
 [dev-dependencies]
-tokio = { version = "1.38.0", features = ["full"] }
+
 
 [features]
 default = []

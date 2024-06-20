@@ -1,7 +1,9 @@
 use super::*;
 use crate::PangaeaError;
 use chrono::DateTime;
+use mongodb::options::TransactionOptions;
 use std::sync::Arc;
+use tokio::try_join;
 
 #[derive(Debug, Serialize, Deserialize, JsonSchema)]
 pub struct UserEmailRegistrationRequest {
@@ -19,37 +21,19 @@ pub struct UserEmailRegistrationRequest {
 }
 
 impl UserEmailRegistrationRequest {
+    // Transaction Operator: `email` and `user` must be created at the same time
     pub async fn execute(&self, client: &PangaeaClient) -> Result<i64> {
-        // If the email doesn't exist, proceed with insertion
-        let email_object = self.make_email_object();
-        let user_object = self.make_user_object(&email_object);
-        // Check if the email already exists
-        let email = email_object.email.as_str();
+        let mut session = client.db_service.start_session(None).await?;
+        session.start_transaction(None).await?;
         let email_collection = client.email_collection().await;
-        match email_collection.find_one(doc! {"email": email}, None).await? {
-            Some(_) => {
-                Err(PangaeaError::custom("该邮箱已注册"))?;
-            }
-            _ => {}
-        }
-        // Check if the username already exists
-        // let user_collection = client.users_collection().await;
-        // let username = user_object.username.as_str();
-        // match user_collection.find_one(doc! {"username": username}, None).await? {
-        //     Some(_) => {
-        //         Err(PangaeaError::custom("该用户名已被占用"))?;
-        //     }
-        //     _ => {}
-        // }
-        // Insert the email object
+        let users_collection = client.users_collection().await;
+        let email_object = self.make_email_object();
         let email_code = email_object.email_code;
-        // Everything is ok Insert the user object
-        let collection = client.email_collection().await;
-        collection.insert_one(email_object.clone(), None).await?;
-
-        let collection = client.users_collection().await;
-        collection.insert_one(user_object, None).await?;
-        return Ok(email_code);
+        let user_object = self.make_user_object(&email_object);
+        email_collection.insert_one_with_session(email_object, None, &mut session).await?;
+        users_collection.insert_one_with_session(user_object, None, &mut session).await?;
+        session.commit_transaction().await?;
+        Ok(email_code)
     }
     pub fn make_email_object(&self) -> EmailObject {
         EmailObject {

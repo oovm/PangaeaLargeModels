@@ -67,9 +67,9 @@ async fn main() -> Result<()> {
         },
     };
     UserEmailRegistrationRequest {
-        email: "aaa@996.icu".to_string(),
+        email: "zzz@996.icu".to_string(),
         password: 100,
-        username: "996".to_string(),
+        username: "233".to_string(),
         nickname: "icu".to_string(),
     }
     .execute(&client)
