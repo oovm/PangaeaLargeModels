@@ -1,9 +1,6 @@
 use super::*;
-use crate::PangaeaError;
 use chrono::DateTime;
 use mongodb::options::TransactionOptions;
-use std::sync::Arc;
-use tokio::try_join;
 
 #[derive(Debug, Serialize, Deserialize, JsonSchema)]
 pub struct UserEmailRegistrationRequest {

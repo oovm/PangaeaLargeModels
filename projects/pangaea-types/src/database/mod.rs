@@ -3,7 +3,7 @@ use chrono::{DateTime, Utc};
 use mongodb::{
     bson::{doc, oid::ObjectId, Bson, Document, Timestamp},
     options::{ClientOptions, ServerApi, ServerApiVersion},
-    results::{InsertOneResult, UpdateResult},
+    results::UpdateResult,
     Client, Collection,
 };
 use rand::Rng;
@@ -11,6 +11,7 @@ use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use std::fmt::{Debug, Formatter};
 
+pub mod models;
 pub mod users;
 
 pub struct PangaeaClient {
@@ -36,6 +37,24 @@ impl PangaeaClient {
     pub async fn email_collection(&self) -> Collection<EmailObject> {
         self.db_service.database("Authorization").collection("email")
     }
+    pub async fn stable_diffusion(&self) -> Collection<StableDiffusion15Object> {
+        self.db_service.database("LargeModel").collection("sd15")
+    }
+}
+
+pub struct StableDiffusion15Object {
+    /// The user's ID
+    #[serde(rename = "_id")]
+    id: ObjectId,
+
+    place: StableDiffusionPlace,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize, JsonSchema)]
+#[serde(tag = "type")]
+pub enum StableDiffusionPlace {
+    CivitAI { model_id: i64 },
+    Aliyun { model_id: i64 },
 }
 
 pub fn expired_after_seconds(seconds: u32) -> Timestamp {

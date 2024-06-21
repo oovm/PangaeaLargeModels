@@ -22,6 +22,7 @@ serde = { version = "1.0.203", features = ["derive"] }
 chrono = "0.4.38"
 tokio = { version = "1.38.0", features = ["full"] }
 mongodb = "2.8.2"
+tracing = "0.1.40"
 
 [dev-dependencies]
 

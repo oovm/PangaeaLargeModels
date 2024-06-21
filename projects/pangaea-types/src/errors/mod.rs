@@ -21,6 +21,10 @@ pub enum ExampleErrorKind {
     /// An unknown error.
     UnknownError,
 
+    WriteError {
+        internal_id: u64,
+    },
+
     CustomError {
         message: String,
     },
